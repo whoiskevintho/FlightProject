@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<head>
+    <title>UNC Airline Reservation System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/airlinereservation.css">
+    <link rel="stylesheet" type="text/css" href="css/autocomplete.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <style>
+        /* Set the size of the div element that contains the map */
+        
+        #map {
+            height: 400px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
+        }
+    </style>
+</head>
+
+<body>
+    <!--Begin Main -->
+    <div class="container flight-form bg-dark px-4 py-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="book-flight" data-toggle="tab" href="#bookFlightButton" role="tab" aria-controls="bookFlightButton" aria-selected="true">Book a Flight</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="global-map" data-toggle="tab" href="#mapButton" role="tab" aria-controls="globalMap" aria-selected="false">View Global Airport Map</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <!--Begin First tab-->
+            <div class="tab-pane fade show active" id="bookFlightButton" role="tabpanel" aria-labelledby="book-flight">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form>
+                            <div class="form-group info">
+                                <label for="exampleFormControlInput1" class="text-light pt-2">Flying from</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend inp-from">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                    </div>
+                                    <div id="container_from_fly">
+                                    </div>
+                                    <span class="icon-close"> <i class="fa fa-times" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group info">
+                            <label for="exampleFormControlInput1" class="text-light pt-2">Flying To</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend inp-to">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                </div>
+                                <div id="container_to_fly">
+                                </div>
+                                <span class="icon-close"> <i class="fa fa-times" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group info">
+                            <label for="exampleFormControlInput1" class="text-light pt-2">Departure Date: </label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend inp-datepicker">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group info passenger-numbers">
+                            <label for="exampleFormControlInput1" class="text-light pt-2">Preferred airline</label>
+                            <div class="dropdown" id="airlinesDropDown">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 ">
+
+                    </div>
+
+                    <div class="added-content" style="margin-bottom:50px;">
+                        <button type="button" id="searchBtn" class="btn btn btn-warning btn-lg">Search Flights</button>
+                        <div id="displayFlights" style="display:none"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--End First Tab-->
+            <div class="tab-pane fade" id="mapButton" role="tabpanel" aria-labelledby="global-map">
+                <div id="map"></div>
+                <div id="displayFlights" syle="display:none"></div>
+            </div>
+
+            <!--The div element for the map -->
+            </form>
+        </div>
+        <!--End Main -->
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="js/airlinereservation.js"></script>
+        <!--Load the API from the specified URL
+            * The async attribute allows the browser to render the page while the API loads
+            * The key parameter will contain your own API key (which is not needed for this tutorial)
+            * The callback parameter executes the initMap() function
+        -->
+
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGKSa6I0MnnFaMpS8W_k8PzL7uP54Xpic&callback=initMap">
+        </script>
+</body>
+
+</html>
